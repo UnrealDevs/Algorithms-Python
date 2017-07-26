@@ -1,7 +1,5 @@
 """
-   Convex Hull Assignment: COSC262 (2017)
-   Student Name: Hayden Taylor
-   Usercode: hta55
+   Convex Hull's
 """
 
 
@@ -122,7 +120,7 @@ def grahamscan(listPts):
 
 
 
-def amethod(listPts):
+def monotoneChaining(listPts):
     """Returns the convex hull vertices computed using 
           a third algorithm
     """
@@ -146,9 +144,9 @@ def amethod(listPts):
 
 def main():
     listPts = readDataPts('Set_A.dat', 2000)  #File name, numPts given as example only
-    #print(giftwrap(listPts))      #You may replace these three print statements
-    #print (grahamscan(listPts))   #with any code for validating your outputs
-    #print(amethod(listPts))
+    #print(giftwrap(listPts))      
+    #print (grahamscan(listPts))   
+    #print(monotoneChaining(listPts))
     
 if __name__  ==  "__main__":
     main()
