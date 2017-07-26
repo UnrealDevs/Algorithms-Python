@@ -1,35 +1,22 @@
-def adjacency_list(graph_str):
-    """Converts str graph rep to adj list"""
-    lines = graph_str.splitlines()
-    other = []
-    for line in lines:
-        other.append(line.split())
-    
-    adjList = [[] for _ in range(int(other[0][1]))]
-    info = other[:1]
-    list1 = other[1:]
-   
+from collections import deque
 
-    if (info[0][0] == "D"):
-        
-        for i in range(0,len(list1)): 
-            if len(info[0]) == 2:
-                adjList[int(list1[i][0])].append((int(list1[i][1]),None))
-            else:
-                adjList[int(list1[i][0])].append((int(list1[i][1]),int(list1[i][2])))
-                 
-                   
-    else:
-        for i in range(0,len(list1)): 
-            if len(info[0]) == 2:
-                adjList[int(list1[i][0])].append((int(list1[i][1]),None))
-                adjList[int(list1[i][1])].append((int(list1[i][0]),None))
-                
-            else:
-                adjList[int(list1[i][0])].append((int(list1[i][1]),int(list1[i][2])))
-                adjList[int(list1[i][1])].append((int(list1[i][0]),int(list1[i][2])))
-        
-    return adjList
+def adjacency_list(graph_str):
+    graph = graph_str.splitlines()
+    array = [line.split() for line in graph]
+    graph_info = array[0]
+    adjList = [[] for i in range(0,int(graph_info[1]))]
+    if len(graph_info) < 3:
+        for i in range(0,len(array)):
+            array[i].append(None)
+    for v1,v2,weight in array[1:]:
+        if weight != None:
+            weight = int(weight)
+        if graph_info[0] == "D":
+            adjList[int(v1)].append((int(v2), weight))
+        else:
+            adjList[int(v1)].append((int(v2), weight))
+            adjList[int(v2)].append((int(v1), weight))     
+    return adjList 
 
 
 def prims(adjList, start):
